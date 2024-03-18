@@ -1,0 +1,30 @@
+<!-- templates/result.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}">
+
+    <title>Result</title>
+</head>
+<body>
+    <div class="container" id="resultContainer">
+        <h1>Result</h1>
+        <p id="message">{{ message }}</p>
+    </div>
+</body>
+<script>
+    const messageElement = document.getElementById('message');
+    const resultContainer = document.getElementById('resultContainer');
+    console.log(messageElement.textContent)
+    // Check the content of the message and set color accordingly
+    if (messageElement.textContent.includes('is')) {
+        console.log("success")
+        resultContainer.style.color = 'green';
+    }  else {
+        resultContainer.style.color = 'black';
+    }
+</script>
+</html>

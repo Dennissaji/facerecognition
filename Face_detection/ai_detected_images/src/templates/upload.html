@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style4.css') }}">
+   
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an Image</h1>
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+            <input type="file" name="file" accept="image/*" id="imageInput">
+            <img src="#" alt="Uploaded Image" id="previewImage" style="display: none;">
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+</body>
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const previewImage = document.getElementById('previewImage');
+
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    previewImage.src = event.target.result;
+                    previewImage.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.src = '#';
+                previewImage.style.display = 'none';
+            }
+        });
+    </script>
+
+</html>
+
